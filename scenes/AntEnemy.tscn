@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/ant_enemy.gd" id="1_ant_script"]
+
+[sub_resource type="CapsuleShape3D" id="1_ant_shape"]
+radius = 0.2
+height = 0.42
+
+[sub_resource type="SphereMesh" id="2_body_mesh"]
+radius = 0.18
+height = 0.36
+
+[sub_resource type="CylinderMesh" id="3_leg_mesh"]
+top_radius = 0.015
+bottom_radius = 0.02
+height = 0.38
+
+[sub_resource type="CylinderMesh" id="4_antenna_mesh"]
+top_radius = 0.01
+bottom_radius = 0.015
+height = 0.24
+
+[sub_resource type="StandardMaterial3D" id="5_shell_material"]
+albedo_color = Color(0.188235, 0.117647, 0.0901961, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="6_detail_material"]
+albedo_color = Color(0.34902, 0.203922, 0.145098, 1)
+roughness = 0.85
+
+[node name="AntEnemy" type="CharacterBody3D"]
+script = ExtResource("1_ant_script")
+floor_snap_length = 0.25
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.2, 0)
+shape = SubResource("1_ant_shape")
+
+[node name="ModelRoot" type="Node3D" parent="."]
+position = Vector3(0, 0.18, 0)
+
+[node name="Abdomen" type="MeshInstance3D" parent="ModelRoot"]
+position = Vector3(0, 0.03, 0.18)
+scale = Vector3(1.25, 1, 1.35)
+mesh = SubResource("2_body_mesh")
+material_override = SubResource("5_shell_material")
+
+[node name="Thorax" type="MeshInstance3D" parent="ModelRoot"]
+position = Vector3(0, 0.03, 0)
+scale = Vector3(1.05, 0.9, 1.0)
+mesh = SubResource("2_body_mesh")
+material_override = SubResource("6_detail_material")
+
+[node name="Head" type="MeshInstance3D" parent="ModelRoot"]
+position = Vector3(0, 0.03, -0.16)
+scale = Vector3(0.85, 0.8, 0.82)
+mesh = SubResource("2_body_mesh")
+material_override = SubResource("5_shell_material")
+
+[node name="LegRootLeft" type="Node3D" parent="ModelRoot"]
+
+[node name="LegFront" type="MeshInstance3D" parent="ModelRoot/LegRootLeft"]
+position = Vector3(-0.15, -0.02, -0.1)
+rotation_degrees = Vector3(0, 32, 72)
+mesh = SubResource("3_leg_mesh")
+material_override = SubResource("5_shell_material")
+
+[node name="LegMid" type="MeshInstance3D" parent="ModelRoot/LegRootLeft"]
+position = Vector3(-0.17, -0.02, 0)
+rotation_degrees = Vector3(0, 0, 84)
+mesh = SubResource("3_leg_mesh")
+material_override = SubResource("5_shell_material")
+
+[node name="LegBack" type="MeshInstance3D" parent="ModelRoot/LegRootLeft"]
+position = Vector3(-0.15, -0.02, 0.1)
+rotation_degrees = Vector3(0, -32, 104)
+mesh = SubResource("3_leg_mesh")
+material_override = SubResource("5_shell_material")
+
+[node name="LegRootRight" type="Node3D" parent="ModelRoot"]
+
+[node name="LegFront" type="MeshInstance3D" parent="ModelRoot/LegRootRight"]
+position = Vector3(0.15, -0.02, -0.1)
+rotation_degrees = Vector3(0, -32, -72)
+mesh = SubResource("3_leg_mesh")
+material_override = SubResource("5_shell_material")
+
+[node name="LegMid" type="MeshInstance3D" parent="ModelRoot/LegRootRight"]
+position = Vector3(0.17, -0.02, 0)
+rotation_degrees = Vector3(0, 0, -84)
+mesh = SubResource("3_leg_mesh")
+material_override = SubResource("5_shell_material")
+
+[node name="LegBack" type="MeshInstance3D" parent="ModelRoot/LegRootRight"]
+position = Vector3(0.15, -0.02, 0.1)
+rotation_degrees = Vector3(0, 32, -104)
+mesh = SubResource("3_leg_mesh")
+material_override = SubResource("5_shell_material")
+
+[node name="AntennaLeft" type="MeshInstance3D" parent="ModelRoot"]
+position = Vector3(-0.05, 0.12, -0.28)
+rotation_degrees = Vector3(-30, -14, 18)
+mesh = SubResource("4_antenna_mesh")
+material_override = SubResource("5_shell_material")
+
+[node name="AntennaRight" type="MeshInstance3D" parent="ModelRoot"]
+position = Vector3(0.05, 0.12, -0.28)
+rotation_degrees = Vector3(-30, 14, -18)
+mesh = SubResource("4_antenna_mesh")
+material_override = SubResource("5_shell_material")
+
+[node name="ChatterSound" type="AudioStreamPlayer3D" parent="."]
+unit_size = 6.0
+max_distance = 20.0
+volume_db = -14.0
+
+[node name="BiteSound" type="AudioStreamPlayer3D" parent="."]
+unit_size = 6.0
+max_distance = 20.0
+volume_db = -10.0
