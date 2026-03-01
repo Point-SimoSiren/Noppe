@@ -1,0 +1,9 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1772366791
+::res://scenes/::1772366428
+Main.tscn::PackedScene::-1::1772366428::0::1::::<><><>0<>0<><>::res://scenes/Player.tscn<>res://scenes/NPCLizard.tscn
+NPCLizard.tscn::PackedScene::-1::1772366428::0::1::::<><><>0<>0<><>::res://scripts/lizard_npc.gd
+Player.tscn::PackedScene::-1::1772366428::0::1::::<><><>0<>0<><>::res://scripts/player.gd
+::res://scripts/::1772366441
+lizard_npc.gd::GDScript::9189923956269972086::1772366468::0::1::::<>CharacterBody3D<><>0<>0<><>::
+player.gd::GDScript::7088346673876279774::1772366428::0::1::::<>CharacterBody3D<><>0<>0<><>::
